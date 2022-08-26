@@ -5,13 +5,16 @@
         });
     }
 
-    function makeTabs(node) {
+    // function makeTabs(node) {
+    function makeTabs() {
+        let node = document.querySelectorAll('.main__devices');
         let selectedNode = node.querySelector('.section__tab_active');
         let selected = selectedNode.dataset.id;
         // let selected = node.querySelector('.section__tab_active').dataset.id;
         const tabs = node.querySelectorAll('.section__tab');
         console.log('tabs', tabs);
-        const list = Array.from(tabs).map(node => node.dataset.id);
+        // const list = Array.from(tabs).map(node => node.dataset.id);
+        const list = tabs.map(node => node.dataset.id);
         const select = node.querySelector('.section__select');
 
         function selectTab(newId) {
@@ -92,7 +95,9 @@
         });
     }
 
-    function makeMenu(node) {
+    // function makeMenu(node) {
+    function makeMenu() {
+        let node = document.querySelectorAll('.header__menu');
         let expanded = false;
         const links = document.querySelector('.header__links');
 
@@ -107,7 +112,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        Array.from(document.querySelectorAll('.main__devices')).forEach(makeTabs);
-        Array.from(document.querySelectorAll('.header__menu')).forEach(makeMenu);
+        makeTabs();
+        makeMenu();
+        // Array.from(document.querySelectorAll('.main__devices')).forEach(makeTabs);
+        // Array.from(document.querySelectorAll('.header__menu')).forEach(makeMenu);
     });
 })();
