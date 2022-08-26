@@ -6,23 +6,31 @@
     }
 
     function makeTabs(node) {
-        let selected = node.querySelector('.section__tab_active').dataset.id;
+        let selectedNode = node.querySelector('.section__tab_active');
+        let selected = selectedNode.dataset.id;
+        // let selected = node.querySelector('.section__tab_active').dataset.id;
         const tabs = node.querySelectorAll('.section__tab');
+        console.log('tabs', tabs);
         const list = Array.from(tabs).map(node => node.dataset.id);
         const select = node.querySelector('.section__select');
 
         function selectTab(newId) {
             const newTab = node.querySelector(`.section__tab[data-id=${newId}]`);
             const newPanel = node.querySelector(`.section__panel[data-id=${newId}]`);
+            // const oldTab = selectedNode;
             const oldTab = node.querySelector('.section__tab_active');
             const oldPanel = node.querySelector('.section__panel:not(.section__panel_hidden)');
 
             selected = newId;
 
+            let oldTabClassList = oldTab.classList;
+            console.log('oldTabClassList', oldTabClassList);
+            // oldTabClassList.remove('section__tab_active');
             oldTab.classList.remove('section__tab_active');
             oldTab.setAttribute('aria-selected', 'false');
             oldTab.removeAttribute('tabindex');
             newTab.classList.add('section__tab_active');
+            // oldTabClassList.add('section__tab_active');
             newTab.setAttribute('aria-selected', 'true');
             newTab.setAttribute('tabindex', '0');
             newTab.focus({
@@ -52,26 +60,31 @@
             }
 
             let index = list.indexOf(selected);
-            if (event.which === 37) {
+            let eventWhich = event.which;
+            let listLength = list.length;
+            if (eventWhich === 37) {
                 // left
                 --index;
-            } else if (event.which === 39) {
+            } else if (eventWhich === 39) {
                 // right
                 ++index;
-            } else if (event.which === 36) {
+            } else if (eventWhich === 36) {
                 // home
                 index = 0;
-            } else if (event.which === 35) {
+            } else if (eventWhich === 35) {
                 // end
-                index = list.length - 1;
+                index = listLength - 1;
+                // index = list.length - 1;
             } else {
                 return;
             }
 
-            if (index >= list.length) {
+            // if (index >= list.length) {
+            if (index >= listLength) {
                 index = 0;
             } else if (index < 0) {
-                index = list.length - 1;
+                index = listLength - 1;
+                // index = list.length - 1;
             }
 
             selectTab(list[index]);
@@ -85,7 +98,8 @@
 
         node.addEventListener('click', () => {
             expanded = !expanded;
-            node.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            // node.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            node.setAttribute('aria-expanded', expanded);
             node.querySelector('.header__menu-text').textContent = expanded ? 'Закрыть меню' : 'Открыть меню';
             links.classList.toggle('header__links_opened', expanded);
             links.classList.add('header__links-toggled');
