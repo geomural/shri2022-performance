@@ -1,6 +1,10 @@
 (() => {
-    function bind(nodes, event, handler) {
-        Array.from(nodes).forEach(node => {
+    // function bind(nodes, event, handler) {
+    function bind(arr, event, handler) {
+        // console.log('bind arr', arr);
+        // console.log('bind nodes', nodes);
+        // Array.from(nodes).forEach(node => {
+        arr.forEach(node => {
             node.addEventListener(event, handler);
         });
     }
@@ -10,13 +14,16 @@
     function makeTabs() {
         // let node = document.querySelectorAll('.main__devices');
         let node = document.getElementsByClassName('main__devices')[0];
-        console.log('makeTabs node', node);
+        // console.log('makeTabs node', node);
         let selectedNode = node.querySelector('.section__tab_active');
         let selected = selectedNode.dataset.id;
         // let selected = node.querySelector('.section__tab_active').dataset.id;
         const tabs = node.querySelectorAll('.section__tab');
-        console.log('tabs', tabs);
-        const list = Array.from(tabs).map(node => node.dataset.id);
+        // console.log('tabs', tabs);
+        let arr = Array.from(tabs);
+        const list = arr.map(node => node.dataset.id);
+        // const list = Array.from(tabs).map(node => node.dataset.id);
+        console.log('list', list);
         // const list = tabs.map(node => node.dataset.id);
         const select = node.querySelector('.section__select');
 
@@ -30,7 +37,7 @@
             selected = newId;
 
             let oldTabClassList = oldTab.classList;
-            console.log('oldTabClassList', oldTabClassList);
+            // console.log('oldTabClassList', oldTabClassList);
             // oldTabClassList.remove('section__tab_active');
             oldTab.classList.remove('section__tab_active');
             oldTab.setAttribute('aria-selected', 'false');
@@ -55,12 +62,14 @@
             selectTab(select.value);
         });
 
-        bind(tabs, 'click', event => {
+        // bind(tabs, 'click', event => {
+        bind(arr, 'click', event => {
             const newId = event.target.dataset.id;
             selectTab(newId);
         });
 
-        bind(tabs, 'keydown', event => {
+        // bind(tabs, 'keydown', event => {
+        bind(arr, 'keydown', event => {
             if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
                 return;
             }
@@ -101,7 +110,7 @@
     // function makeMenu(node) {
     function makeMenu() {
         let node = document.getElementsByClassName('header__menu')[0];
-        console.log('makeMenu node', node);
+        // console.log('makeMenu node', node);
         // let node = document.querySelectorAll('.header__menu');
         let expanded = false;
         const links = document.querySelector('.header__links');
