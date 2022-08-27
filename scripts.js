@@ -34,6 +34,7 @@
         // const select = node.querySelector('.section__select');
 
         function selectTab(newId) {
+            console.log('selectTab(newId)', newId);
             const newTab = node.querySelector(`.section__tab[data-id=${newId}]`);
             const newPanel = node.querySelector(`.section__panel[data-id=${newId}]`);
             // const oldTab = selectedNode;
