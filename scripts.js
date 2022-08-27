@@ -43,7 +43,6 @@
             oldTab.setAttribute('aria-selected', 'false');
             oldTab.removeAttribute('tabindex');
             newTab.classList.add('section__tab_active');
-            // oldTabClassList.add('section__tab_active');
             newTab.setAttribute('aria-selected', 'true');
             newTab.setAttribute('tabindex', '0');
             newTab.focus({
@@ -113,13 +112,15 @@
         // console.log('makeMenu node', node);
         // let node = document.querySelectorAll('.header__menu');
         let expanded = false;
-        const links = document.querySelector('.header__links');
+        // const links = document.querySelector('.header__links');
+        const links = node.parentElement.children[2];
 
         node.addEventListener('click', () => {
             expanded = !expanded;
             // node.setAttribute('aria-expanded', expanded ? 'true' : 'false');
             node.setAttribute('aria-expanded', expanded);
-            node.querySelector('.header__menu-text').textContent = expanded ? 'Закрыть меню' : 'Открыть меню';
+            node.children[0].textContent = expanded ? 'Закрыть меню' : 'Открыть меню';
+            // node.querySelector('.header__menu-text').textContent = expanded ? 'Закрыть меню' : 'Открыть меню';
             links.classList.toggle('header__links_opened', expanded);
             links.classList.add('header__links-toggled');
         });
