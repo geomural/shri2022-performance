@@ -5,9 +5,12 @@
         });
     }
 
-    function makeTabs(node) {
-    // function makeTabs() {
+    // function makeTabs(node) {
+        
+    function makeTabs() {
         // let node = document.querySelectorAll('.main__devices');
+        let node = document.getElementsByClassName('main__devices')[0];
+        console.log('makeTabs node', node);
         let selectedNode = node.querySelector('.section__tab_active');
         let selected = selectedNode.dataset.id;
         // let selected = node.querySelector('.section__tab_active').dataset.id;
@@ -95,8 +98,10 @@
         });
     }
 
-    function makeMenu(node) {
-    // function makeMenu() {
+    // function makeMenu(node) {
+    function makeMenu() {
+        let node = document.getElementsByClassName('header__menu')[0];
+        console.log('makeMenu node', node);
         // let node = document.querySelectorAll('.header__menu');
         let expanded = false;
         const links = document.querySelector('.header__links');
@@ -112,10 +117,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        let main__devices = Array.from(document.querySelectorAll('.main__devices'));
-        makeTabs(main__devices[0]);
-        let header__menu = Array.from(document.querySelectorAll('.header__menu'));
-        makeMenu(header__menu[0]);
+        // let main__devices = Array.from(document.querySelectorAll('.main__devices'));
+        // makeTabs(main__devices[0]);
+        makeTabs();
+        // let header__menu = Array.from(document.querySelectorAll('.header__menu'));
+        // makeMenu(header__menu[0]);
+        makeMenu();
         // Array.from(document.querySelectorAll('.main__devices')).forEach(makeTabs);
         // Array.from(document.querySelectorAll('.header__menu')).forEach(makeMenu);
     });
