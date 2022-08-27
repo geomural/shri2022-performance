@@ -14,18 +14,24 @@
     function makeTabs() {
         // let node = document.querySelectorAll('.main__devices');
         let node = document.getElementsByClassName('main__devices')[0];
-        // console.log('makeTabs node', node);
+        console.log('makeTabs node', node);
+        // let selectedNode = node.querySelector('.section__tab_active');
+        // let test = node.children[0].children[1];
+        // console.log('test', test);
         let selectedNode = node.querySelector('.section__tab_active');
         let selected = selectedNode.dataset.id;
         // let selected = node.querySelector('.section__tab_active').dataset.id;
-        const tabs = node.querySelectorAll('.section__tab');
-        // console.log('tabs', tabs);
+        // const tabs = node.querySelectorAll('.section__tab');
+        const tabs = node.children[0].children[2].children; //querySelectorAll('.section__tab');
+        console.log('tabs', tabs);
         let arr = Array.from(tabs);
+        console.log('arr', arr);
         const list = arr.map(node => node.dataset.id);
         // const list = Array.from(tabs).map(node => node.dataset.id);
         console.log('list', list);
         // const list = tabs.map(node => node.dataset.id);
-        const select = node.querySelector('.section__select');
+        const select = node.children[0].children[1];
+        // const select = node.querySelector('.section__select');
 
         function selectTab(newId) {
             const newTab = node.querySelector(`.section__tab[data-id=${newId}]`);
