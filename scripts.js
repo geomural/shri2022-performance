@@ -21,21 +21,25 @@
         let selectedNode = node.querySelector('.section__tab_active');
         let selected = selectedNode.dataset.id;
         // let selected = node.querySelector('.section__tab_active').dataset.id;
-        // const tabs = node.querySelectorAll('.section__tab');
-        const tabs = node.children[0].children[2].children; //querySelectorAll('.section__tab');
+        const tabs = node.querySelectorAll('.section__tab');
+        // const tabs = node.children[0].children[2].children; //querySelectorAll('.section__tab');
         console.log('tabs', tabs);
-        let arr = Array.from(tabs);
-        console.log('arr', arr);
+        // let arr = Array.from(tabs);
+        // console.log('arr', arr);
         
-        const list = arr.map(node => node.dataset.id);
-        let listLength = list.length;      
-        let index = list.indexOf(selected);
+        const list = [];
+        // const list = arr.map(node => node.dataset.id);
+        // let listLength = list.length;      
+        let listLength = tabs.length;      
+        let index;
+        // let index = tabs.findIndex(el => el.textContent === selected);
+        // let index = list.indexOf(selected);
 
         // const list = Array.from(tabs).map(node => node.dataset.id);
-        console.log('list', list);
+        // console.log('list', list);
         // const list = tabs.map(node => node.dataset.id);
-        const select = node.children[0].children[1];
-        // const select = node.querySelector('.section__select');
+        // const select = node.children[0].children[1];
+        const select = node.querySelector('.section__select');
 
         function selectTab(newId) {
             console.log('selectTab(newId)', newId);
@@ -47,7 +51,7 @@
 
             selected = newId;
 
-            let oldTabClassList = oldTab.classList;
+            // let oldTabClassList = oldTab.classList;
             // console.log('oldTabClassList', oldTabClassList);
             // oldTabClassList.remove('section__tab_active');
             oldTab.classList.remove('section__tab_active');
@@ -72,7 +76,12 @@
             selectTab(select.value);
         });
 
-        arr.forEach(el => {
+        tabs.forEach((el, i) => {
+            if (el.textContent === selected) {
+                index = i;
+            }
+            list.push(el.textContent);
+        // arr.forEach(el => {
             el.addEventListener('click', (event) => {
                 const newId = event.target.dataset.id;
                 selectTab(newId);
