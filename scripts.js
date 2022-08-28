@@ -28,14 +28,15 @@
         // console.log('arr', arr);
         
         const list = [];
+        tabs.forEach(el => list.push(el.getAttribute('data-id')));
         // const list = arr.map(node => node.dataset.id);
         // let listLength = list.length;      
         let listLength = tabs.length;      
-        let index;
+        // let index;
         // let index = tabs.findIndex(el => el.textContent === selected);
-        // let index = list.indexOf(selected);
-
         // const list = Array.from(tabs).map(node => node.dataset.id);
+        let index = list.indexOf(selected);
+
         // console.log('list', list);
         // const list = tabs.map(node => node.dataset.id);
         // const select = node.children[0].children[1];
@@ -78,13 +79,17 @@
             selectTab(select.value);
         });
 
-        tabs.forEach((el, i) => {
-            let tabText = el.textContent;
-            if (tabText === selected) {
-                index = i;
-            }
-            list.push(tabText);
+        // tabs.forEach((el, i) => {
+        list.forEach((elName, i) => {
+            // let tabText = el.textContent;
+            // if (tabText === selected) {
+            //     index = i;
+            // }
+            // list.push(tabText);
         // arr.forEach(el => {
+            console.log('list.forEach elName', elName);
+            let el = node.querySelector(`.section__tab[data-id=${elName}]`);
+            console.log('list.forEach el', el);
             el.addEventListener('click', (event) => {
                 const newId = event.target.dataset.id;
                 // selectTab(newId);
