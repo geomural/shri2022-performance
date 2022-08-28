@@ -57,19 +57,19 @@
             // console.log('oldTabClassList', oldTabClassList);
             // oldTabClassList.remove('section__tab_active');
             oldTab.classList.remove('section__tab_active');
-            // oldTab.setAttribute('aria-selected', 'false');
-            // oldTab.removeAttribute('tabindex');
+            oldTab.setAttribute('aria-selected', 'false');
+            oldTab.removeAttribute('tabindex');
             newTab.classList.add('section__tab_active');
-            // newTab.setAttribute('aria-selected', 'true');
-            // newTab.setAttribute('tabindex', '0');
+            newTab.setAttribute('aria-selected', 'true');
+            newTab.setAttribute('tabindex', '0');
             newTab.focus({
                 preventScroll: true
             });
 
             oldPanel.classList.add('section__panel_hidden');
-            // oldPanel.setAttribute('aria-hidden', 'true');
+            oldPanel.setAttribute('aria-hidden', 'true');
             newPanel.classList.remove('section__panel_hidden');
-            // newPanel.setAttribute('aria-hidden', 'false');
+            newPanel.setAttribute('aria-hidden', 'false');
 
             select.value = newId;
         }
