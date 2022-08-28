@@ -41,9 +41,11 @@
         // const select = node.children[0].children[1];
         const select = node.querySelector('.section__select');
 
-        function selectTab(newId) {
+        function selectTab(newId, tab) {
+        // function selectTab(tab) {
             console.log('selectTab(newId)', newId);
-            const newTab = node.querySelector(`.section__tab[data-id=${newId}]`);
+            console.log('selectTab tab', tab);
+            const newTab = tab || node.querySelector(`.section__tab[data-id=${newId}]`);
             const newPanel = node.querySelector(`.section__panel[data-id=${newId}]`);
             // const oldTab = selectedNode;
             const oldTab = node.querySelector('.section__tab_active');
@@ -55,19 +57,19 @@
             // console.log('oldTabClassList', oldTabClassList);
             // oldTabClassList.remove('section__tab_active');
             oldTab.classList.remove('section__tab_active');
-            oldTab.setAttribute('aria-selected', 'false');
-            oldTab.removeAttribute('tabindex');
+            // oldTab.setAttribute('aria-selected', 'false');
+            // oldTab.removeAttribute('tabindex');
             newTab.classList.add('section__tab_active');
-            newTab.setAttribute('aria-selected', 'true');
-            newTab.setAttribute('tabindex', '0');
+            // newTab.setAttribute('aria-selected', 'true');
+            // newTab.setAttribute('tabindex', '0');
             newTab.focus({
                 preventScroll: true
             });
 
             oldPanel.classList.add('section__panel_hidden');
-            oldPanel.setAttribute('aria-hidden', 'true');
+            // oldPanel.setAttribute('aria-hidden', 'true');
             newPanel.classList.remove('section__panel_hidden');
-            newPanel.setAttribute('aria-hidden', 'false');
+            // newPanel.setAttribute('aria-hidden', 'false');
 
             select.value = newId;
         }
@@ -77,14 +79,16 @@
         });
 
         tabs.forEach((el, i) => {
-            if (el.textContent === selected) {
+            let tabText = el.textContent;
+            if (tabText === selected) {
                 index = i;
             }
-            list.push(el.textContent);
+            list.push(tabText);
         // arr.forEach(el => {
             el.addEventListener('click', (event) => {
                 const newId = event.target.dataset.id;
-                selectTab(newId);
+                // selectTab(newId);
+                selectTab(newId, el);
             });
             el.addEventListener('keydown', (event) => {
                 if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) {
@@ -116,7 +120,8 @@
                     // index = list.length - 1;
                 }
     
-                selectTab(list[index]);
+                // selectTab(list[index]);
+                selectTab(tabText, el);
                 event.preventDefault();
             });
             // });
